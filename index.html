@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Unicorn Club - Boissons Alcoolisées</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Unicorn Club</h1>
+  <p>Boissons alcoolisées disponibles</p>
+</header>
+
+<section id="boissons">
+  <div class="menu-grid">
+
+    <!-- Boissons -->
+    <div class="item">
+      <img src="OIP.png" alt="Mètre de shooter">
+      <h3>Mètre de shooter</h3>
+      <p>$150</p>
+      <input type="number" min="1" value="1" class="qty">
+      <button class="add-cart" data-name="Mètre de shooter" data-price="150">Ajouter au panier</button>
+    </div>
+
+    <div class="item">
+      <img src="sexonthebeachjpg.png" alt="Sex and the beach">
+      <h3>Sex and the beach</h3>
+      <p>$150</p>
+      <input type="number" min="1" value="1" class="qty">
+      <button class="add-cart" data-name="Sex and the beach" data-price="150">Ajouter au panier</button>
+    </div>
+
+    <div class="item">
+      <img src="placeholder.jpg" alt="Rhum-Cola">
+      <h3>Rhum-Cola</h3>
+      <p>$140</p>
+      <input type="number" min="1" value="1" class="qty">
+      <button class="add-cart" data-name="Rhum-Cola" data-price="140">Ajouter au panier</button>
+    </div>
+
+    <div class="item">
+      <img src="rhumcola.png" alt="Rhum-jus de fruits">
+      <h3>Rhum-jus de fruits</h3>
+      <p>$140</p>
+      <input type="number" min="1" value="1" class="qty">
+      <button class="add-cart" data-name="Rhum-jus de fruits" data-price="140">Ajouter au panier</button>
+    </div>
+
+    <div class="item">
+      <img src="l-intro-1645741132.png" alt="Tequila">
+      <h3>Tequila</h3>
+      <p>$140</p>
+      <input type="number" min="1" value="1" class="qty">
+      <button class="add-cart" data-name="Tequila" data-price="140">Ajouter au panier</button>
+    </div>
+
+    <div class="item">
+      <img src="mojito-recipe1.png" alt="Mojito">
+      <h3>Mojito</h3>
+      <p>$230</p>
+      <input type="number" min="1" value="1" class="qty">
+      <button class="add-cart" data-name="Mojito" data-price="230">Ajouter au panier</button>
+    </div>
+
+    <div class="item">
+      <img src="Quel-jus-de-fruit-pour-accompagner-la-vodka-nos-recettes-et-conseils-1024x728.png" alt="Vodka-jus de fruits">
+      <h3>Vodka-jus de fruits</h3>
+      <p>$150</p>
+      <input type="number" min="1" value="1" class="qty">
+      <button class="add-cart" data-name="Vodka-jus de fruits" data-price="150">Ajouter au panier</button>
+    </div>
+
+    <div class="item">
+      <img src="blue_kamikase_shooter_480x480.png" alt="Shooter">
+      <h3>Shooter</h3>
+      <p>$140</p>
+      <input type="number" min="1" value="1" class="qty">
+      <button class="add-cart" data-name="Shooter" data-price="140">Ajouter au panier</button>
+    </div>
+
+    <div class="item">
+      <img src="e20417186452437.png" alt="Vodka-Energisante">
+      <h3>Vodka-Energisante</h3>
+      <p>$160</p>
+      <input type="number" min="1" value="1" class="qty">
+      <button class="add-cart" data-name="Vodka-Energisante" data-price="160">Ajouter au panier</button>
+    </div>
+
+    <div class="item">
+      <img src="tequila-weight-loss.png" alt="Teq-Paf">
+      <h3>Teq-Paf</h3>
+      <p>$140</p>
+      <input type="number" min="1" value="1" class="qty">
+      <button class="add-cart" data-name="Teq-Paf" data-price="140">Ajouter au panier</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Panier -->
+<div id="cart">
+  <h3>Panier</h3>
+  <div id="cart-items"></div>
+  <p>Total: $<span id="cart-total">0</span></p>
+  
+  <button id="checkoutBtn">Valider la commande</button>
+</div>
+
+<!-- Modal checkout -->
+<div id="checkoutModal">
+  <div>
+    <h3>Informations pour la commande</h3>
+    <input type="text" id="clientName" value="" placeholder="Nom ou entreprise">
+    <input type="date" id="deliveryDate">
+    <button id="sendOrder">Envoyer la commande</button>
+    <button onclick="document.getElementById('checkoutModal').style.display='none'">Annuler</button>
+  </div>
+</div>
+
+<!-- Palmiers décoratifs -->
+<img src="sticker-palmier-noir-silhouette-removebg-preview.png" class="palm-left" alt="Palmier gauche" width="200" height="200">
+<img src="sticker-palmier-noir-silhouette-removebg-preview.png" class="palm-right" alt="Palmier droit" width="200" height="200">
+
+<footer>&copy; 2025 Unicorn Club - Tous droits réservés</footer>
+
+<script>
+let cart = [];
+
+function updateCart() {
+  const cartItems = document.getElementById('cart-items');
+  const cartTotal = document.getElementById('cart-total');
+  cartItems.innerHTML = '';
+  let total = 0;
+  cart.forEach((item,index)=>{
+    total += item.price*item.qty;
+    const div = document.createElement('div');
+    div.className='cart-item';
+    div.innerHTML=`<span>${item.name} x ${item.qty}</span><span>$${item.price*item.qty}</span> <button onclick="removeItem(${index})">❌</button>`;
+    cartItems.appendChild(div);
+  });
+  cartTotal.textContent=total;
+}
+
+function removeItem(index){ cart.splice(index,1); updateCart(); }
+
+document.querySelectorAll('.add-cart').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    const itemDiv=e.target.parentElement;
+    const name=btn.dataset.name;
+    const price=parseFloat(btn.dataset.price);
+    const qty=parseInt(itemDiv.querySelector('.qty').value);
+    const existing=cart.find(i=>i.name===name);
+    if(existing) existing.qty+=qty;
+    else cart.push({name,price,qty});
+    updateCart();
+  });
+});
+
+document.getElementById('checkoutBtn').addEventListener('click',()=>{
+  if(cart.length===0){ alert("Votre panier est vide !"); return; }
+  document.getElementById('checkoutModal').style.display='flex';
+});
+
+document.getElementById('sendOrder').addEventListener('click',()=>{
+  const client = document.getElementById('clientName').value || "Unicorn Club";
+  const delivery = document.getElementById('deliveryDate').value || "Non précisée";
+  let message = `Nouvelle commande !\nClient: ${client}\nDate de livraison: ${delivery}\n`;
+  cart.forEach(i => message += `${i.name} x ${i.qty} = $${i.price*i.qty}\n`);
+  const total = cart.reduce((sum,i)=>sum+i.price*i.qty,0);
+  message += `Total: $${total}`;
+
+  fetch('/order',{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify({ content: message })
+  })
+  .then(res=>res.text())
+  .then(()=>{ alert("Commande envoyée !"); cart=[]; updateCart(); document.getElementById('checkoutModal').style.display='none'; })
+  .catch(err=>{ alert("Erreur lors de l'envoi"); console.error(err); });
+});
+</script>
+
+</body>
+</html>
